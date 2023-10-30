@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block content %}
+<h3>List of books</h3>
+<style>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>
+<table style="min-width: 600px;">
+  <tr>
+    <th>Author</th>
+    <th>Title</th>
+    <th>Year published</th>
+    <th>Publisher</th>
+    <th>ISBN</th>
+    <th>Checkout</th>
+  </tr>
+  {% for book in books %}
+  <tr>
+    <td>{{ book.author }}</td>
+    <td>{{ book.title }}</td>
+    <td>{{ book.year }}</td>
+    <td>{{ book.publisher }}</td>
+    <td>{{ book.isbn }}</td>
+    <td>
+      <!-- TODO: ha ki van kölcsönözve, az alábbiak helyett írja ki, kinél van, és legyen egy Return gomb a visszahozáshoz -->
+      <form action="/checkout" method="post">
+        <input type="hidden" name="id" value="{{ book.id }}" />
+        <select name="neptun">
+          {% for member in members %}
+          <option name="neptun" value="{{ member.neptun }}">
+            {{ member.name }} ({{ member.neptun }})
+          </option>
+          {% endfor %}
+        </select>
+        <button>Checkout</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<h3>Add book</h3>
+<form action="/books" method="POST">
+  <input type="text" name="author" placeholder="Author" />
+  <input type="text" name="title" placeholder="Title" />
+  <input type="number" name="year" placeholder="Year published" />
+  <input type="text" name="publisher" placeholder="Publisher" />
+  <input type="text" name="isbn" placeholder="ISBN" />
+  <input type="submit" value="Add" />
+</form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+<h3>List of members</h3>
+<ul>
+  {% for member in members %}
+  <li>
+    {{ member.neptun }} - {{ member.name }}
+  </li>
+  {% endfor %}
+</ul>
+<h3>Add member</h3>
+<form action="/members" method="post">
+  <input type="text" name="name" placeholder="Name" />
+  <input type="text" name="neptun" placeholder="Neptun" />
+  <button>Add</button>
+</form>
+{% endblock %}
