@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS members;
+
+CREATE TABLE books (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    isbn TEXT NOT NULL UNIQUE,
+    author TEXT NOT NULL,
+    title TEXT NOT NULL,
+    year INTEGER NOT NULL,
+    publisher TEXT NOT NULL,
+    is_borrowed BOOLEAN NOT NULL DEFAULT False,
+    score INTEGER NOT NULL DEFAULT 0,
+    borrower TEXT
+);
+
+CREATE TABLE members(
+    neptun TEXT NOT NULL PRIMARY KEY UNIQUE,
+    name TEXT NOT NULL,
+    score INTEGER NOT NULL DEFAULT 0
+);

@@ -24,20 +24,31 @@
     <td>{{ book.year }}</td>
     <td>{{ book.publisher }}</td>
     <td>{{ book.isbn }}</td>
+    {%if not book.is_borrowed %}
+      <td>
+        <!-- TODO: ha ki van kölcsönözve, az alábbiak helyett írja ki, kinél van, és legyen egy Return gomb a visszahozáshoz -->
+        <form action="/borrow" method="post">
+          <input type="hidden" name="id" value="{{ book.id }}" />
+          <select name="neptun">
+            {% for member in members %}
+            <option name="neptun" value="{{ member.neptun }}">
+              {{ member.name }} ({{ member.neptun }})
+            </option>
+            {% endfor %}
+          </select>
+          <button>Borrow</button>
+        </form>
+      </td>
+    {%else%}
     <td>
       <!-- TODO: ha ki van kölcsönözve, az alábbiak helyett írja ki, kinél van, és legyen egy Return gomb a visszahozáshoz -->
-      <form action="/checkout" method="post">
+      <span>{{book.borrower}}</span>
+      <form action="/unborrow" method="post">
         <input type="hidden" name="id" value="{{ book.id }}" />
-        <select name="neptun">
-          {% for member in members %}
-          <option name="neptun" value="{{ member.neptun }}">
-            {{ member.name }} ({{ member.neptun }})
-          </option>
-          {% endfor %}
-        </select>
-        <button>Checkout</button>
+        <button>Return</button>
       </form>
-    </td>
+    </td>  
+    {%endif%}
   </tr>
   {% endfor %}
 </table>

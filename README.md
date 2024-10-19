@@ -8,9 +8,9 @@ Ehhez a megadott template-ek szabadon felhasználhatóak és módosíthatóak, d
 ### Elvárt funkciók
 
 - Könyvek listázása, kölcsönözhetőségi információval együtt
-- Új könyv adatainak felvitele
-- Könyvtártagok listázása
-- Új könyvtártag adatainak felvitele
+- X Új könyv adatainak felvitele
+- X Könyvtártagok listázása
+- X Új könyvtártag adatainak felvitele
 - Kölcsönzés/visszahozás rögzítése
 - Diagramok megjelenítése a kölcsönzésekről
   - Oszlopdiagram: melyik könyvet hányszor kölcsönözték ki
